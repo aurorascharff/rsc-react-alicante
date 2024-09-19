@@ -4,15 +4,16 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { prisma } from '@/db';
 import { slow } from '@/utils/slow';
-import { routes } from '@/validations/routeSchema';
 
-export async function createEmptyContact() {
+export async function deleteContact(contactId: string) {
   await slow();
 
-  const contact = await prisma.contact.create({
-    data: {},
+  await prisma.contact.delete({
+    where: {
+      id: contactId,
+    },
   });
 
   revalidatePath('/');
-  redirect(routes.contactIdEdit({ contactId: contact.id }));
+  redirect('/');
 }
