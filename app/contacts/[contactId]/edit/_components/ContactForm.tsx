@@ -11,7 +11,15 @@ export default async function ContactForm({ contactId }: { contactId: string }) 
   const updateContactById = updateContact.bind(null, contactId);
 
   return (
-    <form action={updateContactById} className="flex max-w-[40rem] flex-col gap-4 @container">
+    <form
+      // onSubmit={async (event) => {
+      //   event.preventDefault();
+      //   const formData = new FormData(event.currentTarget);
+      //   await updateContactById(formData);
+      // }}
+      action={updateContactById}
+      className="flex max-w-[40rem] flex-col gap-4 @container"
+    >
       <div className="grip-rows-6 grid gap-2 @sm:grid-cols-[1fr_4fr] @sm:gap-4">
         <span className="flex">Name</span>
         <div className="flex gap-4">
