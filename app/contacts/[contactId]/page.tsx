@@ -1,11 +1,11 @@
 import Image from 'next/image';
 
 import LinkButton from '@/components/ui/LinkButton';
-import SubmitButton from '@/components/ui/SubmitButton';
-import { deleteContact } from '@/data/actions/deleteContact';
+
 import { getContact } from '@/data/services/getContact';
 import GithubLogo from '@/public/github-mark.svg';
 import { routes } from '@/validations/routeSchema';
+import DeleteContactButton from './_components/DeleteContactButton';
 import Favorite from './_components/Favorite';
 
 type PageProps = {
@@ -15,7 +15,6 @@ type PageProps = {
 export default async function ContactPage({ params }: PageProps) {
   const { contactId } = routes.contactId.$parseParams(params);
   const contact = await getContact(contactId);
-  const deleteContactById = deleteContact.bind(null, contactId);
 
   return (
     <div className="flex flex-col gap-4 lg:flex-row">
@@ -68,11 +67,7 @@ export default async function ContactPage({ params }: PageProps) {
           <LinkButton theme="secondary" href={`/contacts/${contactId}/edit`}>
             Edit
           </LinkButton>
-          <form action={deleteContactById}>
-            <SubmitButton type="submit" theme="destroy">
-              Delete
-            </SubmitButton>
-          </form>
+          <DeleteContactButton contactId={contactId} />
         </div>
       </div>
     </div>
