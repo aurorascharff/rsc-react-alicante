@@ -62,7 +62,7 @@ export default async function ContactPage({ params }: PageProps) {
         )}
         {contact.notes && <div className="max-h-[300px] w-full overflow-auto 2xl:w-1/2">{contact.notes}</div>}
         <div className="my-4 flex gap-2">
-          <LinkButton theme="secondary" href={`/contacts/${params.contactId}/edit`}>
+          <LinkButton theme="secondary" href={`/contacts/${contactId}/edit`}>
             Edit
           </LinkButton>
           <Button type="submit" theme="destroy">
